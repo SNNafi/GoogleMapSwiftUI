@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,9 @@
 		C7ADAD3D2691DE32005AC8D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7ADAD3B2691DE32005AC8D8 /* LaunchScreen.storyboard */; };
 		C7ADAD482691DE32005AC8D8 /* GoogleMapSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADAD472691DE32005AC8D8 /* GoogleMapSwiftUITests.swift */; };
 		C7ADAD532691DE32005AC8D8 /* GoogleMapSwiftUIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADAD522691DE32005AC8D8 /* GoogleMapSwiftUIUITests.swift */; };
+		C7ADAD622691E212005AC8D8 /* GoogleMapsUtils in Frameworks */ = {isa = PBXBuildFile; productRef = C7ADAD612691E212005AC8D8 /* GoogleMapsUtils */; };
+		C7ADAD642691E294005AC8D8 /* APIKEY.plist in Resources */ = {isa = PBXBuildFile; fileRef = C7ADAD632691E294005AC8D8 /* APIKEY.plist */; };
+		C7ADAD662691E618005AC8D8 /* _APIKEY.plist in Resources */ = {isa = PBXBuildFile; fileRef = C7ADAD652691E618005AC8D8 /* _APIKEY.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,8 @@
 		C7ADAD4E2691DE32005AC8D8 /* GoogleMapSwiftUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoogleMapSwiftUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7ADAD522691DE32005AC8D8 /* GoogleMapSwiftUIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapSwiftUIUITests.swift; sourceTree = "<group>"; };
 		C7ADAD542691DE32005AC8D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C7ADAD632691E294005AC8D8 /* APIKEY.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = APIKEY.plist; sourceTree = "<group>"; };
+		C7ADAD652691E618005AC8D8 /* _APIKEY.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = _APIKEY.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7ADAD622691E212005AC8D8 /* GoogleMapsUtils in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +105,7 @@
 		C7ADAD2F2691DE30005AC8D8 /* GoogleMapSwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				C7ADAD652691E618005AC8D8 /* _APIKEY.plist */,
 				C7ADAD302691DE30005AC8D8 /* AppDelegate.swift */,
 				C7ADAD322691DE30005AC8D8 /* SceneDelegate.swift */,
 				C7ADAD342691DE30005AC8D8 /* ContentView.swift */,
@@ -106,6 +113,7 @@
 				C7ADAD3B2691DE32005AC8D8 /* LaunchScreen.storyboard */,
 				C7ADAD3E2691DE32005AC8D8 /* Info.plist */,
 				C7ADAD382691DE32005AC8D8 /* Preview Content */,
+				C7ADAD632691E294005AC8D8 /* APIKEY.plist */,
 			);
 			path = GoogleMapSwiftUI;
 			sourceTree = "<group>";
@@ -152,6 +160,9 @@
 			dependencies = (
 			);
 			name = GoogleMapSwiftUI;
+			packageProductDependencies = (
+				C7ADAD612691E212005AC8D8 /* GoogleMapsUtils */,
+			);
 			productName = GoogleMapSwiftUI;
 			productReference = C7ADAD2D2691DE30005AC8D8 /* GoogleMapSwiftUI.app */;
 			productType = "com.apple.product-type.application";
@@ -223,6 +234,9 @@
 				Base,
 			);
 			mainGroup = C7ADAD242691DE30005AC8D8;
+			packageReferences = (
+				C7ADAD602691E212005AC8D8 /* XCRemoteSwiftPackageReference "google-maps-ios-utils" */,
+			);
 			productRefGroup = C7ADAD2E2691DE30005AC8D8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -240,6 +254,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7ADAD3D2691DE32005AC8D8 /* LaunchScreen.storyboard in Resources */,
+				C7ADAD662691E618005AC8D8 /* _APIKEY.plist in Resources */,
+				C7ADAD642691E294005AC8D8 /* APIKEY.plist in Resources */,
 				C7ADAD3A2691DE32005AC8D8 /* Preview Assets.xcassets in Resources */,
 				C7ADAD372691DE32005AC8D8 /* Assets.xcassets in Resources */,
 			);
@@ -441,11 +457,12 @@
 				DEVELOPMENT_TEAM = LZD5N478Y9;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = GoogleMapSwiftUI/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "SNN-Systems.GoogleMapSwiftUI";
+				PRODUCT_BUNDLE_IDENTIFIER = snnafi.GoogleMapSwiftUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -462,11 +479,12 @@
 				DEVELOPMENT_TEAM = LZD5N478Y9;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = GoogleMapSwiftUI/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "SNN-Systems.GoogleMapSwiftUI";
+				PRODUCT_BUNDLE_IDENTIFIER = snnafi.GoogleMapSwiftUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -597,6 +615,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C7ADAD602691E212005AC8D8 /* XCRemoteSwiftPackageReference "google-maps-ios-utils" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googlemaps/google-maps-ios-utils.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.9.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C7ADAD612691E212005AC8D8 /* GoogleMapsUtils */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C7ADAD602691E212005AC8D8 /* XCRemoteSwiftPackageReference "google-maps-ios-utils" */;
+			productName = GoogleMapsUtils;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C7ADAD252691DE30005AC8D8 /* Project object */;
 }
