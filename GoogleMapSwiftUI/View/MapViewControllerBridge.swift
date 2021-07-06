@@ -23,13 +23,62 @@ import GoogleMaps
 import SwiftUI
 
 struct MapViewControllerBridge: UIViewControllerRepresentable {
-
-  func makeUIViewController(context: Context) -> MapViewController {
-    // Replace this line
-    return UIViewController() as! MapViewController
-  }
-
-  func updateUIViewController(_ uiViewController: MapViewController, context: Context) {
-  }
+    
+    @Binding var markers: [GMSMarker] // showing markers list
+    @Binding var selectedMarker: GMSMarker? // for selecting
+    var onAnimationEnded: () -> ()
+    var mapViewWillMove: (Bool) -> ()
+    
+    func makeUIViewController(context: Context) -> MapViewController {
+        let uiViewController = MapViewController()
+        uiViewController.map.delegate = context.coordinator
+        return uiViewController
+    }
+    
+    func updateUIViewController(_ uiViewController: MapViewController, context: Context) {
+        markers.forEach { $0.map = uiViewController.map }
+        selectedMarker?.map = uiViewController.map
+        animateToSelectedMarker(viewController: uiViewController)
+    }
+    
+    private func animateToSelectedMarker(viewController: MapViewController) {
+        guard let selectedMarker = selectedMarker else {
+            return
+        }
+        
+        let map = viewController.map
+        if map.selectedMarker != selectedMarker {
+            map.selectedMarker = selectedMarker
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                map.animate(toZoom: kGMSMinZoomLevel)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    map.animate(with: GMSCameraUpdate.setTarget(selectedMarker.position))
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                        map.animate(toZoom: 12)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                            // Invoke onAnimationEnded() once the animation sequence completes
+                            onAnimationEnded()
+                        })
+                    })
+                }
+            }
+        }
+    }
+    
+    final class MapViewCoordinator: NSObject, GMSMapViewDelegate {
+        var mapViewControllerBridge: MapViewControllerBridge
+        
+        init(_ mapViewControllerBridge: MapViewControllerBridge) {
+            self.mapViewControllerBridge = mapViewControllerBridge
+        }
+        
+        func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
+            self.mapViewControllerBridge.mapViewWillMove(gesture)
+        }
+    }
+    
+    func makeCoordinator() -> MapViewCoordinator {
+        return MapViewCoordinator(self)
+    }
 }
 

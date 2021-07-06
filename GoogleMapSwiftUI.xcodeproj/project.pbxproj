@@ -3,13 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		23CB3489F9428247EC2DF93F /* Pods_GoogleMapSwiftUI_GoogleMapSwiftUIUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F899560143CCADC860C99D6A /* Pods_GoogleMapSwiftUI_GoogleMapSwiftUIUITests.framework */; };
 		735EB38CCB861FE3805021D1 /* Pods_GoogleMapSwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5761C0F48D009E25C27EE912 /* Pods_GoogleMapSwiftUI.framework */; };
 		7AF5A16934EE73D68FA2ECFE /* Pods_GoogleMapSwiftUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EB6FE8236FC779B179010CC /* Pods_GoogleMapSwiftUITests.framework */; };
+		C73C36A52694C592004831C0 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = C73C36A42694C592004831C0 /* FirebaseDatabase */; };
+		C73C36A72694C592004831C0 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = C73C36A62694C592004831C0 /* FirebaseStorage */; };
+		C73C36A92694C592004831C0 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = C73C36A82694C592004831C0 /* FirebaseFirestore */; };
 		C7ADAD312691DE30005AC8D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADAD302691DE30005AC8D8 /* AppDelegate.swift */; };
 		C7ADAD332691DE30005AC8D8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADAD322691DE30005AC8D8 /* SceneDelegate.swift */; };
 		C7ADAD352691DE30005AC8D8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADAD342691DE30005AC8D8 /* ContentView.swift */; };
@@ -25,6 +28,7 @@
 		C7ADAD6F2691F1F2005AC8D8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADAD6D2691F1F2005AC8D8 /* MapViewController.swift */; };
 		C7ADAD732691F245005AC8D8 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADAD712691F245005AC8D8 /* City.swift */; };
 		C7ADAD742691F245005AC8D8 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADAD722691F245005AC8D8 /* MapView.swift */; };
+		C7ADAD7626922AD1005AC8D8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C7ADAD7526922AD1005AC8D8 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +76,7 @@
 		C7ADAD6D2691F1F2005AC8D8 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		C7ADAD712691F245005AC8D8 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		C7ADAD722691F245005AC8D8 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		C7ADAD7526922AD1005AC8D8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CA5DB318EBA56F2D5474CD62 /* Pods-GoogleMapSwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoogleMapSwiftUI.release.xcconfig"; path = "Target Support Files/Pods-GoogleMapSwiftUI/Pods-GoogleMapSwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 		CB59FD94D907E37E9DB5C69D /* Pods-GoogleMapSwiftUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoogleMapSwiftUITests.debug.xcconfig"; path = "Target Support Files/Pods-GoogleMapSwiftUITests/Pods-GoogleMapSwiftUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F899560143CCADC860C99D6A /* Pods_GoogleMapSwiftUI_GoogleMapSwiftUIUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoogleMapSwiftUI_GoogleMapSwiftUIUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,7 +87,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C73C36A52694C592004831C0 /* FirebaseDatabase in Frameworks */,
+				C73C36A92694C592004831C0 /* FirebaseFirestore in Frameworks */,
 				735EB38CCB861FE3805021D1 /* Pods_GoogleMapSwiftUI.framework in Frameworks */,
+				C73C36A72694C592004831C0 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +138,7 @@
 		C7ADAD2F2691DE30005AC8D8 /* GoogleMapSwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				C7ADAD7526922AD1005AC8D8 /* GoogleService-Info.plist */,
 				C7ADAD702691F217005AC8D8 /* Model */,
 				C7ADAD692691EF0C005AC8D8 /* View */,
 				C7ADAD682691EF05005AC8D8 /* Util */,
@@ -191,6 +200,7 @@
 		C7ADAD692691EF0C005AC8D8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C7ADAD722691F245005AC8D8 /* MapView.swift */,
 				C7ADAD6D2691F1F2005AC8D8 /* MapViewController.swift */,
 				C7ADAD6C2691F1F2005AC8D8 /* MapViewControllerBridge.swift */,
 			);
@@ -201,7 +211,6 @@
 			isa = PBXGroup;
 			children = (
 				C7ADAD712691F245005AC8D8 /* City.swift */,
-				C7ADAD722691F245005AC8D8 /* MapView.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -247,6 +256,11 @@
 			dependencies = (
 			);
 			name = GoogleMapSwiftUI;
+			packageProductDependencies = (
+				C73C36A42694C592004831C0 /* FirebaseDatabase */,
+				C73C36A62694C592004831C0 /* FirebaseStorage */,
+				C73C36A82694C592004831C0 /* FirebaseFirestore */,
+			);
 			productName = GoogleMapSwiftUI;
 			productReference = C7ADAD2D2691DE30005AC8D8 /* GoogleMapSwiftUI.app */;
 			productType = "com.apple.product-type.application";
@@ -321,6 +335,9 @@
 				Base,
 			);
 			mainGroup = C7ADAD242691DE30005AC8D8;
+			packageReferences = (
+				C73C36A32694C592004831C0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = C7ADAD2E2691DE30005AC8D8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -342,6 +359,7 @@
 				C7ADAD642691E294005AC8D8 /* APIKEY.plist in Resources */,
 				C7ADAD3A2691DE32005AC8D8 /* Preview Assets.xcassets in Resources */,
 				C7ADAD372691DE32005AC8D8 /* Assets.xcassets in Resources */,
+				C7ADAD7626922AD1005AC8D8 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -813,6 +831,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C73C36A32694C592004831C0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C73C36A42694C592004831C0 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C73C36A32694C592004831C0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		C73C36A62694C592004831C0 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C73C36A32694C592004831C0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		C73C36A82694C592004831C0 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C73C36A32694C592004831C0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C7ADAD252691DE30005AC8D8 /* Project object */;
 }
