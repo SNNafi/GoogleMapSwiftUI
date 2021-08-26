@@ -29,6 +29,7 @@
 		C7ADAD732691F245005AC8D8 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADAD712691F245005AC8D8 /* City.swift */; };
 		C7ADAD742691F245005AC8D8 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ADAD722691F245005AC8D8 /* MapView.swift */; };
 		C7ADAD7626922AD1005AC8D8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C7ADAD7526922AD1005AC8D8 /* GoogleService-Info.plist */; };
+		C7E12BFA26D7AE2C00FBFB73 /* CustomMapStyle.json in Resources */ = {isa = PBXBuildFile; fileRef = C7E12BF926D7AE2C00FBFB73 /* CustomMapStyle.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		C7ADAD712691F245005AC8D8 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		C7ADAD722691F245005AC8D8 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		C7ADAD7526922AD1005AC8D8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C7E12BF926D7AE2C00FBFB73 /* CustomMapStyle.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CustomMapStyle.json; sourceTree = "<group>"; };
 		CA5DB318EBA56F2D5474CD62 /* Pods-GoogleMapSwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoogleMapSwiftUI.release.xcconfig"; path = "Target Support Files/Pods-GoogleMapSwiftUI/Pods-GoogleMapSwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 		CB59FD94D907E37E9DB5C69D /* Pods-GoogleMapSwiftUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoogleMapSwiftUITests.debug.xcconfig"; path = "Target Support Files/Pods-GoogleMapSwiftUITests/Pods-GoogleMapSwiftUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F899560143CCADC860C99D6A /* Pods_GoogleMapSwiftUI_GoogleMapSwiftUIUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoogleMapSwiftUI_GoogleMapSwiftUIUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -193,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				C7ADAD6A2691F09A005AC8D8 /* PlistReader.swift */,
+				C7E12BF926D7AE2C00FBFB73 /* CustomMapStyle.json */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7ADAD3D2691DE32005AC8D8 /* LaunchScreen.storyboard in Resources */,
+				C7E12BFA26D7AE2C00FBFB73 /* CustomMapStyle.json in Resources */,
 				C7ADAD662691E618005AC8D8 /* _APIKEY.plist in Resources */,
 				C7ADAD642691E294005AC8D8 /* APIKEY.plist in Resources */,
 				C7ADAD3A2691DE32005AC8D8 /* Preview Assets.xcassets in Resources */,
@@ -665,7 +669,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"GoogleMapSwiftUI/Preview Content\"";
-				DEVELOPMENT_TEAM = LZD5N478Y9;
+				DEVELOPMENT_TEAM = J4SV74FUBV;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = GoogleMapSwiftUI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -688,7 +692,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"GoogleMapSwiftUI/Preview Content\"";
-				DEVELOPMENT_TEAM = LZD5N478Y9;
+				DEVELOPMENT_TEAM = J4SV74FUBV;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = GoogleMapSwiftUI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
