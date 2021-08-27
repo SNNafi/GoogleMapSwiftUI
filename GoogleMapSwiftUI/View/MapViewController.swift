@@ -26,25 +26,28 @@ import UIKit
 
 class MapViewController: UIViewController {
     
-    let camera =  GMSCameraPosition.camera(withLatitude: 24.78504812901799, longitude:  90.39632986635996, zoom: 14.5)
+    
     let map =  GMSMapView(frame: .zero)
     //    var clusterManager: GMUClusterManager!
-    
     var isAnimating: Bool = false
     
     
     override func viewDidLoad() {
-        let iconGenerator = GMUDefaultClusterIconGenerator()
-        let algorithm = GMUNonHierarchicalDistanceBasedAlgorithm()
-        let renderer = GMUDefaultClusterRenderer(mapView: map,
-                                                 clusterIconGenerator: iconGenerator)
+//        let iconGenerator = GMUDefaultClusterIconGenerator()
+//        let algorithm = GMUNonHierarchicalDistanceBasedAlgorithm()
+//        let renderer = GMUDefaultClusterRenderer(mapView: map,
+//                                                 clusterIconGenerator: iconGenerator)
         //        clusterManager = GMUClusterManager(map: map, algorithm: algorithm,
         //                                                  renderer: renderer)
+        let camera = GMSCameraPosition.camera(withLatitude: 24.78504812901799, longitude:  90.39632986635996, zoom: 14.5)
+        map.camera = camera
+        map.settings.myLocationButton = true
+        map.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        map.isMyLocationEnabled = true
     }
     
     override func loadView() {
         super.loadView()
-        map.camera = camera
         do {
             // Set the map style by passing the URL of the local file.
             if let styleURL = Bundle.main.url(forResource: "CustomMapStyle", withExtension: "json") {
