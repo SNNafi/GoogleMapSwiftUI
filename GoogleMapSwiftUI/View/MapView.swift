@@ -72,30 +72,30 @@ struct MapView: View {
                 
                 
                 // Cities List
-                CitiesList(markers: $markers) { (marker) in
-                    guard self.selectedMarker != marker else { return }
-                    self.selectedMarker = marker
-                    self.zoomInCenter = false
-                    self.expandList = false
-                }  handleAction: {
-                    self.expandList.toggle()
-                }.background(Color.white)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .offset(
-                    x: 0,
-                    y: geometry.size.height - (expandList ? scrollViewHeight + 150 : scrollViewHeight)
-                )
-                .offset(x: 0, y: self.yDragTranslation)
-                .animation(.spring())
-                .gesture(
-                    DragGesture().onChanged { value in
-                        self.yDragTranslation = value.translation.height
-                    }.onEnded { value in
-                        self.expandList = (value.translation.height < -120)
-                        self.yDragTranslation = 0
-                    }
-                )
-                .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+//                CitiesList(markers: $markers) { (marker) in
+//                    guard self.selectedMarker != marker else { return }
+//                    self.selectedMarker = marker
+//                    self.zoomInCenter = false
+//                    self.expandList = false
+//                }  handleAction: {
+//                    self.expandList.toggle()
+//                }.background(Color.white)
+//                .clipShape(RoundedRectangle(cornerRadius: 10))
+//                .offset(
+//                    x: 0,
+//                    y: geometry.size.height - (expandList ? scrollViewHeight + 150 : scrollViewHeight)
+//                )
+//                .offset(x: 0, y: self.yDragTranslation)
+//                .animation(.spring())
+//                .gesture(
+//                    DragGesture().onChanged { value in
+//                        self.yDragTranslation = value.translation.height
+//                    }.onEnded { value in
+//                        self.expandList = (value.translation.height < -120)
+//                        self.yDragTranslation = 0
+//                    }
+//                )
+//                .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
             }
         }
     }
