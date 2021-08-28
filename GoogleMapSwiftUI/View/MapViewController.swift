@@ -1,23 +1,12 @@
-// Copyright 2021 Google LLC
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//      http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+
 
 //
 //  MapViewController.swift
-//  GoogleMapsSwiftUI
+//  GoogleMapSwiftUI
 //
-//  Created by Chris Arriola on 2/5/21.
+//  Created by Shariar Nasim Nafi on 4/7/21.
 //
+
 
 import GoogleMaps
 import GoogleMapsUtils
@@ -26,24 +15,26 @@ import UIKit
 
 class MapViewController: UIViewController {
     
-    
-    let map =  GMSMapView(frame: .zero)
-    //    var clusterManager: GMUClusterManager!
+    let map =  GoogleMaps.GMSMapView(frame: .zero)
+    var clusterManager: GMUClusterManager!
     var isAnimating: Bool = false
-    
+    let camera = GMSCameraPosition.camera(withLatitude: 24.78504812901799, longitude:  90.39632986635996, zoom: 12.5)
     
     override func viewDidLoad() {
-//        let iconGenerator = GMUDefaultClusterIconGenerator()
-//        let algorithm = GMUNonHierarchicalDistanceBasedAlgorithm()
-//        let renderer = GMUDefaultClusterRenderer(mapView: map,
-//                                                 clusterIconGenerator: iconGenerator)
-        //        clusterManager = GMUClusterManager(map: map, algorithm: algorithm,
-        //                                                  renderer: renderer)
-        let camera = GMSCameraPosition.camera(withLatitude: 24.78504812901799, longitude:  90.39632986635996, zoom: 14.5)
+        
+        // Set up the cluster manager with the supplied icon generator and
+        // renderer.
+        let iconGenerator = GMUDefaultClusterIconGenerator()
+        let algorithm = GMUNonHierarchicalDistanceBasedAlgorithm()
+        let renderer = GMUDefaultClusterRenderer(mapView: map,
+                                                 clusterIconGenerator: iconGenerator)
+        clusterManager = GMUClusterManager(map: map, algorithm: algorithm,
+                                           renderer: renderer)
         map.camera = camera
         map.settings.myLocationButton = true
         map.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         map.isMyLocationEnabled = true
+        
     }
     
     override func loadView() {

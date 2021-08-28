@@ -16,6 +16,7 @@
 
 import SwiftUI
 import GoogleMaps
+import GoogleMapsUtils
 
 /// The root view of the application displaying a map that the user can interact with and a
 /// button where the user
@@ -26,6 +27,7 @@ struct MapView: View {
         let marker = GMSMarker(position: $0.coordinate)
         marker.title = nil
         marker.userData = $0
+        marker.tracksViewChanges = false
         marker.iconView = UIHostingController(rootView: CustomMarkerView(place: $0)).view
         marker.iconView?.frame = CGRect(x: 0, y: 0, width: 300 , height: 120)
         marker.iconView?.backgroundColor = UIColor.clear
@@ -37,6 +39,8 @@ struct MapView: View {
     @State var selectedMarker: GMSMarker?
     @State var yDragTranslation: CGFloat = 0
     @State var currentLocation: CLLocation?
+    @State var clusterShow: Bool = false
+    @State var clusterMarkers = [GMSMarker]()
     
     var body: some View {
         
@@ -45,12 +49,25 @@ struct MapView: View {
                 // Map - TODO add the map here
                 let diameter = zoomInCenter ? geometry.size.width : (geometry.size.height * 2)
                 
-                MapViewControllerBridge(markers: $markers, selectedMarker: $selectedMarker , onAnimationEnded: {
+                GoogleMapView(markers: $markers, selectedMarker: $selectedMarker , currentLocation: $currentLocation, onAnimationEnded: {
                     self.zoomInCenter = true
                 }, mapViewWillMove: { (isGesture) in
                     guard isGesture else { return }
                     self.zoomInCenter = false
-                }, currentLocation: $currentLocation)
+                }, didTap: { marker in
+                    if marker.userData is GMUCluster {
+                        print(#function)
+                        clusterMarkers = ((marker.userData as! GMUCluster).items as! [GMSMarker])
+                        clusterShow = true
+                        ((marker.userData as! GMUCluster).items as! [GMSMarker]).forEach {
+                            print(($0.userData as! Place).name)
+                        }
+                        
+                        return true
+                    }
+                    print("(_:didTap:) -> \((marker.userData as! Place).name)")
+                    return true
+                })
                 .clipShape(
                     Circle()
                         .size(
@@ -66,8 +83,21 @@ struct MapView: View {
                 )
                 .animation(.easeIn)
                 .background(Color(red: 254.0/255.0, green: 1, blue: 220.0/255.0))
+                .onAppear {
+                    
+                }
                 
+                //                if clusterShow {
+                //                    ClusterItemListView(markers: clusterMarkers)
+                //                }
             }
+            .sheet(isPresented: $clusterShow, onDismiss: {
+                clusterMarkers = []
+                
+            }, content: {
+                ClusterItemListView(markers: $clusterMarkers)
+            })
+            
         }
     }
 }

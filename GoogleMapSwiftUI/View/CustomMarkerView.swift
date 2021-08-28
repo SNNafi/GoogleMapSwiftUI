@@ -11,6 +11,7 @@ import Kingfisher
 struct CustomMarkerView: View {
     
     var place = places[5]
+    
     var body: some View {
         HStack(alignment: .center) {
             KFImage(URL(string: place.imageUrl)!)

@@ -1,37 +1,26 @@
-// Copyright 2021 Google LLC
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//      http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
 
 //
 //  MapViewControllerBridge.swift
-//  GoogleMapsSwiftUI
+//  GoogleMapSwiftUI
 //
-//  Created by Chris Arriola on 2/5/21.
+//  Created by Shariar Nasim Nafi on 4/7/21.
 //
 
-import GoogleMaps
 import SwiftUI
+import GoogleMaps
+import GoogleMapsUtils
+import Defaults
 
-struct MapViewControllerBridge: UIViewControllerRepresentable {
+struct GoogleMapView: UIViewControllerRepresentable {
     
     @Binding var markers: [GMSMarker] // showing markers list
     @Binding var selectedMarker: GMSMarker? // for selecting
+    @Binding var currentLocation: CLLocation?
     var onAnimationEnded: () -> ()
     var mapViewWillMove: (Bool) -> ()
+    var didTap: (GMSMarker) -> (Bool)
     var locationManager = CLLocationManager()
-    @Binding var currentLocation: CLLocation?
     let mapViewController = MapViewController()
-    
     
     func makeUIViewController(context: Context) -> MapViewController {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -39,12 +28,16 @@ struct MapViewControllerBridge: UIViewControllerRepresentable {
         locationManager.distanceFilter = 50
         locationManager.startUpdatingLocation()
         locationManager.delegate = context.coordinator
-        mapViewController.map.delegate = context.coordinator
+        mapViewController.map.delegate = context.coordinator      
         return mapViewController
     }
     
     func updateUIViewController(_ uiViewController: MapViewController, context: Context) {
+        uiViewController.clusterManager.setMapDelegate(context.coordinator)
+        uiViewController.clusterManager.clearItems()
         markers.forEach { $0.map = uiViewController.map }
+        uiViewController.clusterManager.add(markers)
+        uiViewController.clusterManager.cluster()
         selectedMarker?.map = uiViewController.map
         animateToSelectedMarker(viewController: uiViewController)
     }
@@ -74,25 +67,53 @@ struct MapViewControllerBridge: UIViewControllerRepresentable {
     }
     
     final class MapViewCoordinator: NSObject, GMSMapViewDelegate, CLLocationManagerDelegate {
-        var mapViewControllerBridge: MapViewControllerBridge
+        var googleMapView: GoogleMapView
         var preciseLocationZoomLevel: Float = 15.0
         var approximateLocationZoomLevel: Float = 10.0
         
-        init(_ mapViewControllerBridge: MapViewControllerBridge) {
-            self.mapViewControllerBridge = mapViewControllerBridge
+        init(_ mapViewControllerBridge: GoogleMapView) {
+            self.googleMapView = mapViewControllerBridge
         }
         
         
         // MARK: GMSMapViewDelegate
         
+        func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
+            
+        }
+        
         func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
-            self.mapViewControllerBridge.mapViewWillMove(gesture)
+            self.googleMapView.mapViewWillMove(gesture)
+        }
+        
+        func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+            
+            // center the map on tapped marker
+            if !(marker.userData is GMUCluster) {
+                mapView.animate(toLocation: marker.position)
+            } else {
+                mapView.camera = GMSCameraPosition.camera(withLatitude: Defaults[.currentLocation][0], longitude:  Defaults[.currentLocation][1], zoom: 12.5)
+            }
+            return self.googleMapView.didTap(marker)
+            
+            //            if marker.userData is GMUCluster {
+            //                print(#function)
+            //                ((marker.userData as! GMUCluster).items as! [GMSMarker]).forEach { _ in
+            //                    // print(($0.userData as! Place).name)
+            //                }
+            //
+            //                return true
+            //            }
+            //            print("\(#function) -> \((marker.userData as! Place).name)")
+            //            return true
+            
         }
         
         // MARK: CLLocationManagerDelegate
         
         func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
             let location: CLLocation = locations.last!
+            Defaults[.currentLocation] = [location.coordinate.latitude, location.coordinate.longitude]
             print("Location: \(location)")
             var zoomLevel = approximateLocationZoomLevel
             if #available(iOS 14.0, *) {
@@ -101,7 +122,7 @@ struct MapViewControllerBridge: UIViewControllerRepresentable {
             let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,
                                                   longitude: location.coordinate.longitude,
                                                   zoom: zoomLevel)
-            let mapView = self.mapViewControllerBridge.mapViewController.map
+            let mapView = self.googleMapView.mapViewController.map
             if mapView.isHidden {
                 mapView.isHidden = false
                 mapView.camera = camera
