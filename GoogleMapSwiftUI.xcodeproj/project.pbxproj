@@ -137,7 +137,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C708732426DC0DCF003911DA /* Picture */ = {
+		C708732426DC0DCF003911DA /* Pictures */ = {
 			isa = PBXGroup;
 			children = (
 				C708732526DC0E0B003911DA /* Screenshot1.png */,
@@ -146,13 +146,13 @@
 				C708732626DC0E0B003911DA /* Screenshot4.png */,
 				C708732726DC0E0C003911DA /* Screenshot2.png */,
 			);
-			path = Picture;
+			path = Pictures;
 			sourceTree = "<group>";
 		};
 		C7ADAD242691DE30005AC8D8 = {
 			isa = PBXGroup;
 			children = (
-				C708732426DC0DCF003911DA /* Picture */,
+				C708732426DC0DCF003911DA /* Pictures */,
 				C7ADAD2F2691DE30005AC8D8 /* GoogleMapSwiftUI */,
 				C7ADAD462691DE32005AC8D8 /* GoogleMapSwiftUITests */,
 				C7ADAD512691DE32005AC8D8 /* GoogleMapSwiftUIUITests */,
