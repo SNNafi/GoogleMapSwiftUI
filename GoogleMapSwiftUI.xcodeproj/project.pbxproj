@@ -11,6 +11,11 @@
 		735EB38CCB861FE3805021D1 /* Pods_GoogleMapSwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5761C0F48D009E25C27EE912 /* Pods_GoogleMapSwiftUI.framework */; };
 		7AF5A16934EE73D68FA2ECFE /* Pods_GoogleMapSwiftUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EB6FE8236FC779B179010CC /* Pods_GoogleMapSwiftUITests.framework */; };
 		C708732326DA9655003911DA /* ClusterItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C708732226DA9655003911DA /* ClusterItemDetailView.swift */; };
+		C708732A26DC0E0C003911DA /* Screenshot1.png in Resources */ = {isa = PBXBuildFile; fileRef = C708732526DC0E0B003911DA /* Screenshot1.png */; };
+		C708732B26DC0E0C003911DA /* Screenshot4.png in Resources */ = {isa = PBXBuildFile; fileRef = C708732626DC0E0B003911DA /* Screenshot4.png */; };
+		C708732C26DC0E0C003911DA /* Screenshot2.png in Resources */ = {isa = PBXBuildFile; fileRef = C708732726DC0E0C003911DA /* Screenshot2.png */; };
+		C708732D26DC0E0C003911DA /* Screenshot5.png in Resources */ = {isa = PBXBuildFile; fileRef = C708732826DC0E0C003911DA /* Screenshot5.png */; };
+		C708732E26DC0E0C003911DA /* Screenshot3.png in Resources */ = {isa = PBXBuildFile; fileRef = C708732926DC0E0C003911DA /* Screenshot3.png */; };
 		C731C72526D9929F00267D63 /* ClusterItemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C731C72426D9929F00267D63 /* ClusterItemListView.swift */; };
 		C73C36A52694C592004831C0 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = C73C36A42694C592004831C0 /* FirebaseDatabase */; };
 		C73C36A72694C592004831C0 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = C73C36A62694C592004831C0 /* FirebaseStorage */; };
@@ -63,6 +68,11 @@
 		579844CFC9F12A039D475CFC /* Pods-GoogleMapSwiftUI-GoogleMapSwiftUIUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoogleMapSwiftUI-GoogleMapSwiftUIUITests.debug.xcconfig"; path = "Target Support Files/Pods-GoogleMapSwiftUI-GoogleMapSwiftUIUITests/Pods-GoogleMapSwiftUI-GoogleMapSwiftUIUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9823C3C4C37F89F23393CDB7 /* Pods-GoogleMapSwiftUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoogleMapSwiftUITests.release.xcconfig"; path = "Target Support Files/Pods-GoogleMapSwiftUITests/Pods-GoogleMapSwiftUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C708732226DA9655003911DA /* ClusterItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterItemDetailView.swift; sourceTree = "<group>"; };
+		C708732526DC0E0B003911DA /* Screenshot1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Screenshot1.png; sourceTree = "<group>"; };
+		C708732626DC0E0B003911DA /* Screenshot4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Screenshot4.png; sourceTree = "<group>"; };
+		C708732726DC0E0C003911DA /* Screenshot2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Screenshot2.png; sourceTree = "<group>"; };
+		C708732826DC0E0C003911DA /* Screenshot5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Screenshot5.png; sourceTree = "<group>"; };
+		C708732926DC0E0C003911DA /* Screenshot3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Screenshot3.png; sourceTree = "<group>"; };
 		C731C72426D9929F00267D63 /* ClusterItemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterItemListView.swift; sourceTree = "<group>"; };
 		C7ADAD2D2691DE30005AC8D8 /* GoogleMapSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoogleMapSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7ADAD302691DE30005AC8D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -127,9 +137,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C708732426DC0DCF003911DA /* Picture */ = {
+			isa = PBXGroup;
+			children = (
+				C708732526DC0E0B003911DA /* Screenshot1.png */,
+				C708732926DC0E0C003911DA /* Screenshot3.png */,
+				C708732826DC0E0C003911DA /* Screenshot5.png */,
+				C708732626DC0E0B003911DA /* Screenshot4.png */,
+				C708732726DC0E0C003911DA /* Screenshot2.png */,
+			);
+			path = Picture;
+			sourceTree = "<group>";
+		};
 		C7ADAD242691DE30005AC8D8 = {
 			isa = PBXGroup;
 			children = (
+				C708732426DC0DCF003911DA /* Picture */,
 				C7ADAD2F2691DE30005AC8D8 /* GoogleMapSwiftUI */,
 				C7ADAD462691DE32005AC8D8 /* GoogleMapSwiftUITests */,
 				C7ADAD512691DE32005AC8D8 /* GoogleMapSwiftUIUITests */,
@@ -386,12 +409,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7ADAD3D2691DE32005AC8D8 /* LaunchScreen.storyboard in Resources */,
+				C708732D26DC0E0C003911DA /* Screenshot5.png in Resources */,
 				C7E12BFA26D7AE2C00FBFB73 /* CustomMapStyle.json in Resources */,
 				C7ADAD662691E618005AC8D8 /* _APIKEY.plist in Resources */,
+				C708732A26DC0E0C003911DA /* Screenshot1.png in Resources */,
 				C7ADAD642691E294005AC8D8 /* APIKEY.plist in Resources */,
 				C7ADAD3A2691DE32005AC8D8 /* Preview Assets.xcassets in Resources */,
+				C708732B26DC0E0C003911DA /* Screenshot4.png in Resources */,
 				C7ADAD372691DE32005AC8D8 /* Assets.xcassets in Resources */,
 				C7ADAD7626922AD1005AC8D8 /* GoogleService-Info.plist in Resources */,
+				C708732C26DC0E0C003911DA /* Screenshot2.png in Resources */,
+				C708732E26DC0E0C003911DA /* Screenshot3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
