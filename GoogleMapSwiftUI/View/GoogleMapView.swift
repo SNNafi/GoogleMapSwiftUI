@@ -14,10 +14,7 @@ import Defaults
 struct GoogleMapView: UIViewControllerRepresentable {
     
     @Binding var markers: [GMSMarker] // showing markers list
-    @Binding var selectedMarker: GMSMarker? // for selecting
     @Binding var currentLocation: CLLocation?
-    var onAnimationEnded: () -> ()
-    var mapViewWillMove: (Bool) -> ()
     var didTap: (GMSMarker) -> (Bool)
     var locationManager = CLLocationManager()
     let mapViewController = MapViewController()
@@ -35,36 +32,10 @@ struct GoogleMapView: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: MapViewController, context: Context) {
         uiViewController.clusterManager.setMapDelegate(context.coordinator)
         uiViewController.clusterManager.clearItems()
-        markers.forEach { $0.map = uiViewController.map }
         uiViewController.clusterManager.add(markers)
         uiViewController.clusterManager.cluster()
-        selectedMarker?.map = uiViewController.map
-        animateToSelectedMarker(viewController: uiViewController)
     }
     
-    private func animateToSelectedMarker(viewController: MapViewController) {
-        guard let selectedMarker = selectedMarker else {
-            return
-        }
-        
-        let map = viewController.map
-        if map.selectedMarker != selectedMarker {
-            map.selectedMarker = selectedMarker
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                map.animate(toZoom: kGMSMinZoomLevel)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    map.animate(with: GMSCameraUpdate.setTarget(selectedMarker.position))
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                        map.animate(toZoom: 12)
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                            // Invoke onAnimationEnded() once the animation sequence completes
-                            onAnimationEnded()
-                        })
-                    })
-                }
-            }
-        }
-    }
     
     final class MapViewCoordinator: NSObject, GMSMapViewDelegate, CLLocationManagerDelegate {
         var googleMapView: GoogleMapView
@@ -83,30 +54,10 @@ struct GoogleMapView: UIViewControllerRepresentable {
         }
         
         func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
-            self.googleMapView.mapViewWillMove(gesture)
         }
         
         func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-            
-            // center the map on tapped marker
-            if !(marker.userData is GMUCluster) {
-                mapView.animate(toLocation: marker.position)
-            } else {
-                mapView.camera = GMSCameraPosition.camera(withLatitude: Defaults[.currentLocation][0], longitude:  Defaults[.currentLocation][1], zoom: 12.5)
-            }
             return self.googleMapView.didTap(marker)
-            
-            //            if marker.userData is GMUCluster {
-            //                print(#function)
-            //                ((marker.userData as! GMUCluster).items as! [GMSMarker]).forEach { _ in
-            //                    // print(($0.userData as! Place).name)
-            //                }
-            //
-            //                return true
-            //            }
-            //            print("\(#function) -> \((marker.userData as! Place).name)")
-            //            return true
-            
         }
         
         // MARK: CLLocationManagerDelegate

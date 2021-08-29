@@ -9,7 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        MapView()
+        NavigationView {
+            MapView()
+                .navigationBarTitle("Google Maps SwiftUI", displayMode: .inline)
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

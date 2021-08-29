@@ -7,7 +7,6 @@
 //  Created by Shariar Nasim Nafi on 4/7/21.
 //
 
-
 import GoogleMaps
 import GoogleMapsUtils
 import SwiftUI

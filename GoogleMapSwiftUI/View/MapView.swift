@@ -17,9 +17,9 @@
 import SwiftUI
 import GoogleMaps
 import GoogleMapsUtils
+import Kingfisher
+import Defaults
 
-/// The root view of the application displaying a map that the user can interact with and a
-/// button where the user
 struct MapView: View {
     
     /// State for markers displayed on the map for each place in `places`
@@ -36,68 +36,51 @@ struct MapView: View {
     
     @State var zoomInCenter: Bool = false
     @State var expandList: Bool = false
-    @State var selectedMarker: GMSMarker?
+    @State var selectedMarker: GMSMarker = GMSMarker(position: CLLocationCoordinate2D(latitude: Defaults[.currentLocation][0], longitude: Defaults[.currentLocation][1]))
+    @State var isSelectedMarker: Bool = false
     @State var yDragTranslation: CGFloat = 0
     @State var currentLocation: CLLocation?
     @State var clusterShow: Bool = false
     @State var clusterMarkers = [GMSMarker]()
     
+    
     var body: some View {
         
         GeometryReader { geometry in
-            ZStack(alignment: .top) {
-                // Map - TODO add the map here
-                let diameter = zoomInCenter ? geometry.size.width : (geometry.size.height * 2)
-                
-                GoogleMapView(markers: $markers, selectedMarker: $selectedMarker , currentLocation: $currentLocation, onAnimationEnded: {
-                    self.zoomInCenter = true
-                }, mapViewWillMove: { (isGesture) in
-                    guard isGesture else { return }
-                    self.zoomInCenter = false
-                }, didTap: { marker in
-                    if marker.userData is GMUCluster {
-                        print(#function)
-                        clusterMarkers = ((marker.userData as! GMUCluster).items as! [GMSMarker])
-                        clusterShow = true
-                        ((marker.userData as! GMUCluster).items as! [GMSMarker]).forEach {
-                            print(($0.userData as! Place).name)
+            ZStack(alignment: .center) {
+                VStack {
+                    GoogleMapView(markers: $markers , currentLocation: $currentLocation, didTap: { marker in
+                        if marker.userData is GMUCluster {
+                            print(#function)
+                            clusterMarkers = ((marker.userData as! GMUCluster).items as! [GMSMarker])
+                            clusterShow = true
+                            ((marker.userData as! GMUCluster).items as! [GMSMarker]).forEach {
+                                print(($0.userData as! Place).name)
+                            }
+                            return true
                         }
-                        
+                        selectedMarker = marker
+                        isSelectedMarker = true
+                        print("(_:didTap:) -> \((marker.userData as! Place).name)")
                         return true
+                    })
+                    .onAppear {
+                        
                     }
-                    print("(_:didTap:) -> \((marker.userData as! Place).name)")
-                    return true
-                })
-                .clipShape(
-                    Circle()
-                        .size(
-                            width: diameter,
-                            height: diameter
-                        )
-                        .offset(
-                            CGPoint(
-                                x: (geometry.size.width - diameter) / 2,
-                                y: (geometry.size.height - diameter) / 2
-                            )
-                        )
-                )
-                .animation(.easeIn)
-                .background(Color(red: 254.0/255.0, green: 1, blue: 220.0/255.0))
-                .onAppear {
                     
+                    // Tap on marker
+                    NavigationLink(
+                        destination: ClusterItemDetailView(marker: selectedMarker),
+                        isActive: $isSelectedMarker,
+                        label: {  EmptyView() })
+                    
+                    // Tap on cluster
+                    NavigationLink(
+                        destination:   ClusterItemListView(size: geometry.size, markers: $clusterMarkers),
+                        isActive: $clusterShow,
+                        label: {  EmptyView() })
                 }
-                
-                //                if clusterShow {
-                //                    ClusterItemListView(markers: clusterMarkers)
-                //                }
             }
-            .sheet(isPresented: $clusterShow, onDismiss: {
-                clusterMarkers = []
-                
-            }, content: {
-                ClusterItemListView(markers: $clusterMarkers)
-            })
-            
         }
     }
 }
